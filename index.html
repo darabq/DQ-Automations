@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DQ Automations — Mississauga, ON</title>
+<meta name="description" content="DQ Automations helps small businesses in the GTA automatically follow up with missed calls and track invoices. Live in 5 business days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --gold: #C9A84C;
+    --cream: #F5F0E8;
+    --light: #F9F7F4;
+    --white: #FFFFFF;
+    --text: #222222;
+    --muted: #666666;
+    --green: #2E6B3E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--navy);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-contact {
+    color: var(--cream);
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-inner { max-width: 800px; position: relative; z-index: 1; }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.9rem 2rem;
+    border-radius: 0.3rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.2s;
+  }
+
+  .hero-cta:hover { background: #d4b05a; transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+  }
+
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    font-weight: 700;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  /* PROBLEM/SOLUTION */
+  .compare {
+    background: var(--white);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(27,42,74,0.08);
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+
+  .compare-col { padding: 2rem; }
+  .compare-col.bad { background: #FFF5F5; }
+  .compare-col.good { background: #F0F9F3; }
+
+  .compare-head {
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .compare-head.bad { color: #C0392B; }
+  .compare-head.good { color: var(--green); }
+
+  .compare-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  .compare-item .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .bad .dot { background: #C0392B; }
+  .good .dot { background: var(--green); }
+
+  /* HOW IT WORKS */
+  .steps-bg { background: var(--navy); color: var(--white); }
+  .steps-bg .section-title { color: var(--white); }
+  .steps-bg .section-sub { color: rgba(255,255,255,0.6); }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 3rem;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    align-items: start;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .step:nth-child(odd) .step-num { background: var(--gold); color: var(--navy); }
+  .step:nth-child(even) .step-num { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+
+  .step-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 700px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+  .price-card {
+    background: var(--white);
+    border: 1px solid #E8E4DC;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  .price-card:hover { box-shadow: 0 8px 32px rgba(27,42,74,0.12); transform: translateY(-2px); }
+
+  .price-card.featured {
+    border-color: var(--gold);
+    background: var(--navy);
+  }
+
+  .price-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    white-space: nowrap;
+  }
+
+  .price-tier {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .price-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .price-card:not(.featured) .price-name { color: var(--navy); }
+  .price-card.featured .price-name { color: var(--white); }
+
+  .price-amount {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 0.25rem;
+  }
+
+  .price-period {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .price-card.featured .price-period { color: rgba(255,255,255,0.5); }
+
+  .price-setup {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #E8E4DC;
+  }
+
+  .price-card.featured .price-setup { color: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.1); }
+
+  .price-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .price-card:not(.featured) .price-feature { color: var(--text); }
+  .price-card.featured .price-feature { color: rgba(255,255,255,0.75); }
+
+  .check { color: var(--gold); font-weight: 700; }
+
+  .price-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  /* WHY US */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 700px) { .why-grid { grid-template-columns: 1fr; } }
+
+  .why-card {
+    background: var(--white);
+    border: 1px solid #E8E4DC;
+    border-radius: 0.5rem;
+    padding: 1.75rem;
+  }
+
+  .why-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* CONTACT */
+  .contact-bg { background: var(--navy); }
+  .contact-bg .section-title { color: var(--white); }
+  .contact-bg .section-sub { color: rgba(255,255,255,0.6); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .contact-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+  }
+
+  .contact-value {
+    font-size: 0.95rem;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .contact-value:hover { color: var(--gold); }
+
+  .contact-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    padding: 2rem;
+  }
+
+  .contact-box p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.8rem 1.75rem;
+    border-radius: 0.3rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .contact-btn:hover { background: #d4b05a; }
+
+  /* FOOTER */
+  footer {
+    background: #111D2E;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-inner > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-tag { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.2s; }
+  .hero p { animation-delay: 0.3s; }
+  .hero-cta { animation-delay: 0.4s; }
+  .hero-stats { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">DQ Automations Inc.</div>
+  <div class="nav-contact">647-863-2557 · Mississauga, ON</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Mississauga, ON · Serving the GTA &amp; Beyond</div>
+    <h1>You focus on the job.<br><span>We handle the rest.</span></h1>
+    <p>Automated missed call follow-up and invoice tracking for small businesses. Never lose a lead again.</p>
+    <a href="mailto:hello@dqautomations.com" class="hero-cta">Get in touch →</a>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Days to go live</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label">Automatic follow-up</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">$299</span>
+        <span class="stat-label">Starting per month</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section>
+  <div class="container">
+    <div class="section-tag">The Problem</div>
+    <h2 class="section-title">Missing calls is costing you more than you think</h2>
+    <p class="section-sub">At 5 missed calls a week and an $800 average service call, that's $4,000 a week walking out the door.</p>
+    <div class="compare">
+      <div class="compare-col bad">
+        <div class="compare-head bad">✕ Without DQ Automations Inc.</div>
+        <div class="compare-item"><span class="dot"></span>Missed call = missed job</div>
+        <div class="compare-item"><span class="dot"></span>Clients feel ignored and move on</div>
+        <div class="compare-item"><span class="dot"></span>You forget who called</div>
+        <div class="compare-item"><span class="dot"></span>Invoices sit unpaid for weeks</div>
+        <div class="compare-item"><span class="dot"></span>You look like a one-man show</div>
+      </div>
+      <div class="compare-col good">
+        <div class="compare-head good">✓ With DQ Automations Inc.</div>
+        <div class="compare-item"><span class="dot"></span>Every missed call gets an instant text</div>
+        <div class="compare-item"><span class="dot"></span>Clients feel taken care of immediately</div>
+        <div class="compare-item"><span class="dot"></span>Google Sheet tracks everyone automatically</div>
+        <div class="compare-item"><span class="dot"></span>Automated reminders chase invoices for you</div>
+        <div class="compare-item"><span class="dot"></span>You look like a proper business</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps-bg">
+  <div class="container">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title">Set up once. Runs forever.</h2>
+    <p class="section-sub">You don't touch anything. It just works.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Someone calls your business number and you can't answer</div>
+          <div class="step-desc">Instead of going to voicemail, they instantly receive a professional SMS from your business saying you saw their call and will be in touch shortly.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">They reply with what they need</div>
+          <div class="step-desc">The AI reads their reply, understands the urgency, and logs it automatically. Every future message to that person references their specific situation.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">You wake up to a prioritized list</div>
+          <div class="step-desc">Your Google Sheet shows every missed call sorted by urgency — as determined by AI. High urgency at the top. You know exactly who to call first.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">You call them back. Text DONE.</div>
+          <div class="step-desc">When you've dealt with someone, text DONE and their number to your business line. They're marked as called back instantly. No app. No login. Just a text.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">2AM: the system cleans itself</div>
+          <div class="step-desc">Every night at 2AM, completed calls are archived automatically. You wake up to a clean, accurate sheet every single morning.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section style="background: var(--cream);">
+  <div class="container">
+    <div class="section-tag">Pricing</div>
+    <h2 class="section-title">Simple, transparent pricing</h2>
+    <p class="section-sub">Live within 5 business days. No hidden fees. All prices exclude HST.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Solo Trades</div>
+        <div class="price-name">Base</div>
+        <div class="price-amount">$299<span style="font-size:1rem;font-weight:400">/mo</span></div>
+        <div class="price-period">+ HST · $249 setup fee</div>
+        <div class="price-setup">6-month commitment: setup fee waived</div>
+        <div class="price-feature"><span class="check">✓</span> Dedicated business number</div>
+        <div class="price-feature"><span class="check">✓</span> Instant SMS on missed calls</div>
+        <div class="price-feature"><span class="check">✓</span> AI urgency sorting</div>
+        <div class="price-feature"><span class="check">✓</span> Google Sheet dashboard</div>
+        <div class="price-feature"><span class="check">✓</span> DONE text command</div>
+        <div class="price-feature"><span class="check">✓</span> Nightly auto-cleanup</div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Includes Invoice Tracker</div>
+        <div class="price-tier">Solo Trades</div>
+        <div class="price-name">Full Package</div>
+        <div class="price-amount">$499<span style="font-size:1rem;font-weight:400;color:rgba(255,255,255,0.5)">/mo</span></div>
+        <div class="price-period">+ HST · $399 setup fee</div>
+        <div class="price-setup">6-month commitment: setup fee waived</div>
+        <div class="price-feature"><span class="check">✓</span> Everything in Base</div>
+        <div class="price-feature"><span class="check">✓</span> Automated invoice tracking</div>
+        <div class="price-feature"><span class="check">✓</span> Payment reminders (day 2 & 5)</div>
+        <div class="price-feature"><span class="check">✓</span> Daily reminder + owner SMS (day 9+)</div>
+        <div class="price-feature"><span class="check">✓</span> Thank-you emails on payment</div>
+        <div class="price-feature"><span class="check">✓</span> Best with Stripe</div>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Small Business</div>
+        <div class="price-name">Base</div>
+        <div class="price-amount">$399<span style="font-size:1rem;font-weight:400">/mo</span></div>
+        <div class="price-period">+ HST · $349 setup fee</div>
+        <div class="price-setup">6-month commitment: setup fee waived</div>
+        <div class="price-feature"><span class="check">✓</span> Dedicated business number</div>
+        <div class="price-feature"><span class="check">✓</span> Instant SMS on missed calls</div>
+        <div class="price-feature"><span class="check">✓</span> AI urgency sorting</div>
+        <div class="price-feature"><span class="check">✓</span> Google Sheet dashboard</div>
+        <div class="price-feature"><span class="check">✓</span> DONE text command</div>
+        <div class="price-feature"><span class="check">✓</span> Nightly auto-cleanup</div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Best Value</div>
+        <div class="price-tier">Small Business</div>
+        <div class="price-name">Full Package</div>
+        <div class="price-amount">$649<span style="font-size:1rem;font-weight:400;color:rgba(255,255,255,0.5)">/mo</span></div>
+        <div class="price-period">+ HST · $549 setup fee</div>
+        <div class="price-setup">6-month commitment: setup fee waived</div>
+        <div class="price-feature"><span class="check">✓</span> Everything in Base</div>
+        <div class="price-feature"><span class="check">✓</span> Automated invoice tracking</div>
+        <div class="price-feature"><span class="check">✓</span> Payment reminders (day 2 & 5)</div>
+        <div class="price-feature"><span class="check">✓</span> Daily reminder + owner SMS (day 9+)</div>
+        <div class="price-feature"><span class="check">✓</span> Thank-you emails on payment</div>
+        <div class="price-feature"><span class="check">✓</span> Best with Stripe</div>
+      </div>
+    </div>
+    <p class="price-note">Solo Trades: self-employed, no employees. Small Business: 2 or more employees.<br>Add the Invoice Tracker within 30 days of signing and your setup fee is credited toward the Full Package rate.</p>
+    <div style="margin-top:2.5rem;background:var(--navy);border-radius:0.5rem;padding:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;">
+      <div>
+        <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">Custom Automation</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:white;font-weight:700;margin-bottom:0.4rem;">Need something built specifically for your business?</div>
+        <div style="font-size:0.9rem;color:rgba(255,255,255,0.55);font-weight:300;">Custom workflows, integrations, and automation systems built to your exact requirements. Quoted individually based on scope.</div>
+      </div>
+      <a href="mailto:hello@dqautomations.com" style="display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:0.9rem;padding:0.8rem 1.75rem;border-radius:0.3rem;text-decoration:none;white-space:nowrap;">Request a quote &#x2192;</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section>
+  <div class="container">
+    <div class="section-tag">Why DQ Automations Inc.</div>
+    <h2 class="section-title">Built for people who are always busy</h2>
+    <p class="section-sub">No apps to learn. No dashboards to log into. Just results — for any service business.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Live in 5 Business Days</div>
+        <div class="why-desc">From signed agreement to fully live system in under a week. We handle everything — you just give us a few details.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔒</div>
+        <div class="why-title">Your Data, Your Account</div>
+        <div class="why-desc">Everything lives in your own Google account. We never store or share your client data. You always own it.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📱</div>
+        <div class="why-title">No App Required</div>
+        <div class="why-desc">A Google Sheet and a text command. That's all you interact with. No learning curve, no new software.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤖</div>
+        <div class="why-title">AI-Powered Prioritization</div>
+        <div class="why-desc">Claude AI reads every reply and sorts callers by urgency. Burst pipe at the top, general inquiry at the bottom.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💼</div>
+        <div class="why-title">Look Like a Real Business</div>
+        <div class="why-desc">A dedicated business number, professional SMS follow-ups, and automated invoicing makes you look established from day one.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📍</div>
+        <div class="why-title">Local to Mississauga</div>
+        <div class="why-desc">Based in Mississauga, serving the GTA. You can reach us directly — no call centres, no tickets, just Darab.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg">
+  <div class="container">
+    <div class="section-tag">Get Started</div>
+    <h2 class="section-title">Ready to stop losing leads?</h2>
+    <p class="section-sub">Book a free 15-minute call. We'll figure out if DQ Automations is right for your business.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <a href="mailto:hello@dqautomations.com" class="contact-value">hello@dqautomations.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <a href="tel:+16478632557" class="contact-value">647-863-2557</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Location</div>
+            <span class="contact-value">Mississauga, ON · Serving the GTA &amp; Beyond</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🏢</div>
+          <div>
+            <div class="contact-label">Business</div>
+            <span class="contact-value">DQ Automations Inc. · Corp. No. 1791830-5</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-box">
+        <p>Not sure if this is right for you? Send us a message and we'll give you an honest answer. No pressure, no sales tactics — just a straight conversation about whether we can help.</p>
+        <a href="mailto:hello@dqautomations.com" class="contact-btn">Send us a message →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 DQ Automations Inc. · Mississauga, ON · owner@dqautomations.com · 647-863-2557 · Corporation No. 1791830-5 · <a href="privacy.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Privacy Policy</a>
+</footer>
+
+</body>
+</html>
